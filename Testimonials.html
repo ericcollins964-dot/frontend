@@ -61,7 +61,7 @@
     
 
     <!-- ======== NAVIGATION ======== -->
-    <nav id="main-nav" class="sticky top-0 z-40 shadow-sm">
+   <nav id="main-nav" class="sticky top-0 z-40 shadow-sm">
       <div
         class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16"
       >
@@ -94,27 +94,9 @@
         <div class="hidden lg:flex items-center gap-7">
           <a href="Testimonials.html" class="nav-link">Testimonials</a>
 
-          <!-- Services dropdown -->
-          <div class="dropdown">
-            <button class="nav-link flex items-center gap-1">
-              Services
-              <svg
-                class="w-3.5 h-3.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-          </div>
+          <a href="index.html#services" class="nav-link">Services</a>
 
-          <a href="index.html#blog" class="nav-link">Blog</a>
+          
           <a href="About.html" class="nav-link">About Us</a>
           <a href="index.html#faq" class="nav-link">FAQ</a>
           <div id="desktop-auth" class="flex items-center gap-4 ml-2 border-l border-brand-border pl-6">
@@ -125,7 +107,7 @@
         <!-- CTA -->
         <div class="flex items-center gap-3">
           <a
-            href="Chat.html"
+            href="index.html#contact"
             class="hidden lg:inline-flex btn-primary px-5 py-2.5 text-sm rounded-lg font-semibold"
             style="width: auto"
             >Get Your Money Back</a
@@ -134,7 +116,9 @@
           <button
             id="hamburger"
             class="lg:hidden p-2 rounded-lg hover:bg-gray-100"
-            onclick="document.getElementById('mobile-menu').classList.toggle('open')"
+            onclick="
+              document.getElementById('mobile-menu').classList.toggle('open')
+            "
           >
             <svg
               class="w-5 h-5 text-brand-navy"
@@ -166,7 +150,7 @@
           <!-- Auth links injected by JS -->
         </div>
         <a
-          href="Chat.html"
+          href="index.html#contact"
           class="block btn-primary text-center py-3 rounded-lg mt-2"
           >Get Your Money Back</a
         >
