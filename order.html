@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Service | Repayment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                navy: "#0a1628",
+                blue: "#1a3a6b",
+                mid: "#1e4d8c",
+                accent: "#2e6bce",
+                light: "#4a90e2",
+                gold: "#c9a84c",
+                goldlt: "#e6c96e",
+                offwhite: "#f4f6fa",
+                gray: "#8a9ab5",
+                border: "#d6dde8",
+              },
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "serif"],
+              body: ['"DM Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="antialiased bg-brand-offwhite">
+    <!-- ======== COOKIE BAR ======== -->
+    <div
+      id="cookie-bar"
+      class="fixed bottom-0 inset-x-0 z-50 px-6 py-3 flex flex-wrap items-center justify-between gap-3 text-sm bg-brand-navy"
+    >
+      <p class="text-blue-200">
+        We use cookies —
+        <a href="#" class="text-blue-300 underline">here's why.</a>
+      </p>
+      <button
+        onclick="document.getElementById('cookie-bar').remove()"
+        class="bg-brand-accent text-white px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-brand-light transition"
+      >
+        OK
+      </button>
+    </div>
+
+    <!-- ======== IMPOSTER WARNING ======== -->
+    <div
+      id="imposter-bar"
+      class="bg-brand-gold text-brand-navy text-xs font-semibold text-center py-2 px-4 flex items-center justify-center gap-2"
+    >
+      <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      Beware of imposters: Our emails end with @repayment.com · We will NEVER
+      ask you to send money via Crypto
+      <button
+        onclick="this.parentElement.remove()"
+        class="ml-4 opacity-60 hover:opacity-100"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- ======== NAVIGATION ======== -->
+    <nav id="main-nav" class="sticky top-0 z-40 bg-white shadow-sm">
+      <div
+        class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16"
+      >
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-accent to-brand-blue flex items-center justify-center"
+          >
+            <svg
+              class="w-4 h-4 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              />
+            </svg>
+          </div>
+          <span
+            class="font-display font-700 text-brand-navy text-xl font-bold tracking-tight"
+            >Repayment</span
+          >
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-7">
+          <a href="index.html#testimonials" class="nav-link text-sm font-semibold text-brand-navy">Testimonials</a>
+
+          <!-- Services dropdown -->
+          <div class="dropdown">
+            <button class="nav-link flex items-center gap-1 text-sm font-semibold text-brand-navy">
+              Services
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+
+          <a href="index.html#blog" class="nav-link text-sm font-semibold text-brand-navy">Blog</a>
+          <a href="About.html" class="nav-link text-sm font-semibold text-brand-navy">About Us</a>
+          <a href="index.html#faq" class="nav-link text-sm font-semibold text-brand-navy">FAQ</a>
+          <div id="desktop-auth" class="flex items-center gap-4 ml-2 border-l border-brand-border pl-6">
+            <!-- Auth links injected by JS -->
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="flex items-center gap-3">
+          <a
+            href="Chat.html"
+            class="hidden lg:inline-flex btn-primary px-5 py-2.5 text-sm rounded-lg font-semibold"
+            style="width: auto"
+            >Get Your Money Back</a
+          >
+          <!-- Hamburger -->
+          <button
+            id="hamburger"
+            class="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+            onclick="
+              document.getElementById('mobile-menu').classList.toggle('open')
+            "
+          >
+            <svg
+              class="w-5 h-5 text-brand-navy"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="lg:hidden border-t border-brand-border bg-white px-5 py-4 space-y-3 hidden"
+      >
+        <a href="index.html#testimonials" class="block nav-link py-2 font-semibold">Testimonials</a>
+        <a href="index.html#services" class="block nav-link py-2 font-semibold">Services</a>
+        <a href="About.html" class="block nav-link py-2 font-semibold">About Us</a>
+        <a href="index.html#faq" class="block nav-link py-2 font-semibold">FAQ</a>
+        <div id="mobile-auth" class="pt-2 border-t border-brand-border">
+          <!-- Auth links injected by JS -->
+        </div>
+        <a
+          href="Chat.html"
+          class="block btn-primary text-center py-3 rounded-lg mt-2"
+          >Get Your Money Back</a
+        >
+      </div>
+    </nav>
+
+    <!-- ======== ORDER SECTION ======== -->
+    <section class="section-off py-20 min-h-[70vh]">
+      <div class="max-w-2xl mx-auto px-5">
+        <div class="text-center mb-10 reveal visible">
+          <p class="text-brand-accent text-sm font-semibold uppercase tracking-widest mb-3">
+            Secure Checkout
+          </p>
+          <h2 class="font-display text-4xl font-bold text-brand-navy mb-4">
+            Complete Your Order
+          </h2>
+          <p class="text-brand-gray" id="service-description">
+            You are ordering a premium investigation report.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-brand-border overflow-hidden reveal visible">
+            <div class="p-8 sm:p-10">
+                <form id="order-form" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2.5 ml-1">Email Address</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-brand-gray">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </span>
+                            <input type="email" id="email" required placeholder="name@company.com" 
+                                class="w-full pl-12 pr-5 py-4.5 rounded-xl border border-brand-border bg-brand-offwhite focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all placeholder:text-gray-400">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2.5 ml-1">Phone Number</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-brand-gray">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </span>
+                            <input type="tel" id="phone" required placeholder="+1 (555) 000-0000" 
+                                class="w-full pl-12 pr-5 py-4.5 rounded-xl border border-brand-border bg-brand-offwhite focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all placeholder:text-gray-400">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full py-4 mt-4 btn-primary text-white font-bold rounded-xl transform hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                        Book Now
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </button>
+                    
+                    <div id="auth-warning" class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center hidden mt-6">
+                        You must be logged in to order. <a href="login.html" class="font-bold underline text-red-700">Log in here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="py-14 bg-brand-navy text-white mt-auto">
+      <div class="max-w-7xl mx-auto px-5">
+        <div
+          class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-brand-blue"
+        >
+          <!-- Brand col -->
+          <div>
+            <a href="index.html" class="flex items-center gap-2 mb-4">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-accent to-brand-blue flex items-center justify-center"
+              >
+                <svg
+                  class="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <span class="font-display font-bold text-white text-lg"
+                >Repayment</span
+              >
+            </a>
+            <p class="text-sm text-blue-200 leading-relaxed mb-5">
+              Empowering victims of online fraud with the tools and expert
+              guidance to reclaim what is rightfully theirs.
+            </p>
+          </div>
+
+          <!-- Sitelinks -->
+          <div>
+            <p class="text-brand-goldlt font-semibold mb-4 text-sm uppercase tracking-widest">Sitelinks</p>
+            <ul class="space-y-2 text-sm text-blue-200">
+              <li><a href="index.html#testimonials" class="hover:text-white transition">Testimonials</a></li>
+              <li><a href="index.html#contact" class="hover:text-white transition">Contact Us</a></li>
+              <li><a href="About.html" class="hover:text-white transition">About Us</a></li>
+              <li><a href="index.html#faq" class="hover:text-white transition">FAQ</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <p class="text-brand-goldlt font-semibold mb-4 text-sm uppercase tracking-widest">Services</p>
+            <ul class="space-y-2 text-sm text-blue-200">
+              <li><a href="#" class="hover:text-white transition">Cyber Investigation</a></li>
+              <li><a href="#" class="hover:text-white transition">Crypto Asset Tracing</a></li>
+              <li><a href="#" class="hover:text-white transition">Binary Options</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <p class="text-brand-goldlt font-semibold mb-4 text-sm uppercase tracking-widest">Contact</p>
+            <ul class="space-y-2 text-sm text-blue-200">
+              <li class="flex items-center gap-2">
+                <a href="#" class="hover:text-white transition">+972-539-538-554 (WhatsApp)</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <a href="#" class="hover:text-white transition">+1-347-518-4140</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom footer -->
+        <div class="pt-8">
+          <div
+            class="text-xs text-blue-300/60 leading-relaxed space-y-2"
+          >
+            <p>
+              Repayment Ltd., Israeli company No. 515711653, is authorized and
+              regulated in Israel & operates globally.
+            </p>
+            <p class="mt-4">
+              © 2024 Repayment. All rights reserved. DMCA Protected.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ======== SUCCESS MODAL ======== -->
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-5 hidden">
+        <div class="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm"></div>
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-sm w-full relative z-10 transform transition-all p-8 text-center animate-fade-up">
+            <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-5 border-[6px] border-green-100">
+                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-brand-navy mb-2">Booking Successful</h3>
+            <p class="text-brand-gray text-sm mb-8">Your order has been securely submitted. Our team will begin the evaluation immediately.</p>
+            <button id="success-modal-ok" class="w-full btn-primary text-white font-bold py-3.5 rounded-xl transform hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- ======== TOAST NOTIFICATION ======== -->
+    <div
+      id="toast"
+      class="fixed bottom-20 right-5 z-50 max-w-xs opacity-0 transition-all duration-300 pointer-events-none"
+    >
+      <div
+        class="bg-brand-navy text-white px-5 py-3.5 rounded-xl shadow-2xl border border-brand-accent flex items-center gap-3"
+      >
+        <div id="toast-icon">
+            <svg
+            class="w-5 h-5 text-green-400 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+            />
+            </svg>
+        </div>
+        <span id="toast-msg" class="text-sm"></span>
+      </div>
+    </div>
+
+    <!-- ======== SCRIPTS ======== -->
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script>
+      // Auth State UI logic
+      document.addEventListener('DOMContentLoaded', () => {
+        const desktopAuth = document.getElementById('desktop-auth');
+        const mobileAuth = document.getElementById('mobile-auth');
+        
+        const updateUI = () => {
+          if (!window.auth) return;
+          const authenticated = window.auth.isAuthenticated();
+          
+          if (authenticated) {
+            const logoutBtn = `<button onclick="window.auth.logoutUser()" class="nav-link font-semibold text-red-500 hover:text-red-600 transition">Logout</button>`;
+            if (desktopAuth) desktopAuth.innerHTML = logoutBtn;
+            if (mobileAuth) mobileAuth.innerHTML = `<button onclick="window.auth.logoutUser()" class="block w-full text-left nav-link py-2 text-red-500 font-semibold">Logout</button>`;
+          } else {
+            const loginLinks = `
+              <a href="login.html" class="nav-link font-semibold text-brand-navy">Login</a>
+              <a href="register.html" class="btn-outline px-4 py-2 text-sm rounded-lg font-semibold border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition">Sign Up</a>
+            `;
+            if (desktopAuth) desktopAuth.innerHTML = loginLinks;
+            if (mobileAuth) mobileAuth.innerHTML = `
+              <a href="login.html" class="block nav-link py-2 font-semibold">Login</a>
+              <a href="register.html" class="block nav-link py-2 font-semibold">Sign Up</a>
+            `;
+          }
+        };
+
+        updateUI();
+
+        // Specific Order Page Logic
+        const orderForm = document.getElementById('order-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const authWarning = document.getElementById('auth-warning');
+        const serviceDescription = document.getElementById('service-description');
+
+        // Extract parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const packageId = urlParams.get('packageId') || '';
+        const packageName = urlParams.get('packageName') || 'Unknown Package';
+
+        if (packageName !== 'Unknown Package') {
+            serviceDescription.innerHTML = `You are ordering the <strong class="text-brand-navy">${packageName}</strong> package.`;
+        } else {
+            // Also update the description if there is no package mapped (defensive check)
+            serviceDescription.innerHTML = `Please select a package from our <a href="index.html#services" class="text-brand-accent underline">services page</a> to proceed.`;
+        }
+
+        // Get user info and check if they are authenticated
+        let clientId = '';
+        let caseId = '';
+        const rawUserInfo = localStorage.getItem('user_info');
+        
+        if (rawUserInfo) {
+            try {
+                const user = JSON.parse(rawUserInfo);
+                clientId = user.id || user._id || '';
+                caseId = user.caseId || user.activeCase || '';
+                
+                // Pre-fill email and phone if available
+                if (user.email) document.getElementById('email').value = user.email;
+                if (user.phone) document.getElementById('phone').value = user.phone;
+            } catch (e) {
+                console.error('Failed to parse user_info');
+            }
+        }
+
+        // Check auth status loosely
+        if (!clientId && (!window.auth || !window.auth.isAuthenticated())) {
+            authWarning.classList.remove('hidden');
+        }
+
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+            
+            toastMsg.textContent = msg;
+            
+            if (type === 'success') {
+                toastIcon.innerHTML = '<svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+            } else {
+                toastIcon.innerHTML = '<svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>';
+            }
+
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(-10px)';
+            toast.style.pointerEvents = 'auto';
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(0)';
+                toast.style.pointerEvents = 'none';
+            }, 4000);
+        }
+
+        if (orderForm) {
+            orderForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                if (!packageId) {
+                    showToast('Error: No package selected. Return to services page.', 'error');
+                    return;
+                }
+                
+                if (!clientId) {
+                    console.warn("No clientId found in local storage. Order may fail.");
+                }
+
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+
+                const orderData = {
+                    packageId,
+                    email,
+                    phone
+                };
+                if (clientId) orderData.clientId = clientId;
+                if (caseId) orderData.caseId = caseId;
+
+                // Loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div> Submitting...';
+
+                const result = window.auth ? await window.auth.createOrder(orderData) : { success: false, message: 'Auth system not loaded' };
+
+                if (result.success) {
+                    const successModal = document.getElementById('success-modal');
+                    const okBtn = document.getElementById('success-modal-ok');
+                    
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Book Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+                    
+                    // Show modal
+                    successModal.classList.remove('hidden');
+                    
+                    // Handle OK click
+                    okBtn.onclick = () => {
+                        window.location.href = 'index.html'; // Redirect to home or dashboard
+                    };
+                } else {
+                    showToast(result.message || 'Order failed. Please check your information.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Book Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+                }
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
