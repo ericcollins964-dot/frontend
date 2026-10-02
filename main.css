@@ -12,8 +12,13 @@
 
       /* Nav */
       #main-nav {
-        background: #fff;
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: #ffffff;
         border-bottom: 1px solid #d6dde8;
+        width: 100%;
+        display: block;
       }
       .nav-link {
         color: #1a3a6b;

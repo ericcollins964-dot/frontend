@@ -31,18 +31,20 @@
 
       // Trigger counter when visible
       const counterEl = document.getElementById("counter");
-      const counterObs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              animateCounter();
-              counterObs.disconnect();
-            }
-          });
-        },
-        { threshold: 0.5 },
-      );
-      counterObs.observe(counterEl);
+      if (counterEl) {
+        const counterObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                animateCounter();
+                counterObs.disconnect();
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+        counterObs.observe(counterEl);
+      }
 
       // FAQ toggle
       function toggleFaq(btn) {
@@ -95,12 +97,14 @@
         const desc =
           scamDescs[btn.textContent.trim()] || scamDescs["Other Scams"];
         const el = document.getElementById("scam-desc");
-        el.style.opacity = 0;
-        setTimeout(() => {
-          el.textContent = desc;
-          el.style.opacity = 1;
-          el.style.transition = "opacity .3s";
-        }, 150);
+        if (el) {
+          el.style.opacity = 0;
+          setTimeout(() => {
+            el.textContent = desc;
+            el.style.opacity = 1;
+            el.style.transition = "opacity .3s";
+          }, 150);
+        }
       }
 
       // Toast
@@ -120,8 +124,10 @@
       // Sticky nav shadow on scroll
       window.addEventListener("scroll", () => {
         const nav = document.getElementById("main-nav");
-        nav.style.boxShadow =
-          window.scrollY > 10 ? "0 4px 20px rgba(10,22,40,.1)" : "";
+        if (nav) {
+          nav.style.boxShadow =
+            window.scrollY > 10 ? "0 4px 20px rgba(10,22,40,.1)" : "";
+        }
       });
    
       

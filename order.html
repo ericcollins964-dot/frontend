@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Service | Repayment</title>
+    <link rel="icon" type="image/png" href="repayment-icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,102 +61,7 @@
     <!-- ======== IMPOSTER WARNING ======== -->
     
 
-    <!-- ======== NAVIGATION ======== -->
-     <nav id="main-nav" class="sticky top-0 z-40 shadow-sm">
-      <div
-        class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16"
-      >
-        <!-- Logo -->
-        <a href="index.html" class="flex items-center gap-2">
-          <div
-            class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-accent to-brand-blue flex items-center justify-center"
-          >
-            <svg
-              class="w-4 h-4 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-              />
-            </svg>
-          </div>
-          <span
-            class="font-display font-700 text-brand-navy text-xl font-bold tracking-tight"
-            >Repayment</span
-          >
-        </a>
-
-        <!-- Desktop Nav -->
-        <div class="hidden lg:flex items-center gap-7">
-          <a href="Testimonials.html" class="nav-link">Testimonials</a>
-
-          <a href="index.html#services" class="nav-link">Services</a>
-
-          
-          <a href="About.html" class="nav-link">About Us</a>
-          <a href="index.html#faq" class="nav-link">FAQ</a>
-          <div id="desktop-auth" class="flex items-center gap-4 ml-2 border-l border-brand-border pl-6">
-            <!-- Auth links injected by JS -->
-          </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="flex items-center gap-3">
-          <a
-            href="index.html#contact"
-            class="hidden lg:inline-flex btn-primary px-5 py-2.5 text-sm rounded-lg font-semibold"
-            style="width: auto"
-            >Get Your Money Back</a
-          >
-          <!-- Hamburger -->
-          <button
-            id="hamburger"
-            class="lg:hidden p-2 rounded-lg hover:bg-gray-100"
-            onclick="
-              document.getElementById('mobile-menu').classList.toggle('open')
-            "
-          >
-            <svg
-              class="w-5 h-5 text-brand-navy"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile menu -->
-      <div
-        id="mobile-menu"
-        class="lg:hidden border-t border-brand-border bg-white px-5 py-4 space-y-3"
-      >
-        <a href="Testimonials.html" class="block nav-link py-2">Testimonials</a>
-        <a href="index.html#services" class="block nav-link py-2">Services</a>
-        <a href="About.html" class="block nav-link py-2">About Us</a>
-        <a href="index.html#faq" class="block nav-link py-2">FAQ</a>
-        <div id="mobile-auth" class="pt-2 border-t border-brand-border">
-          <!-- Auth links injected by JS -->
-        </div>
-        <a
-          href="index.html#contact"
-          class="block btn-primary text-center py-3 rounded-lg mt-2"
-          >Get Your Money Back</a
-        >
-      </div>
-    </nav>
+    <div id="site-header"></div>
 
     <!-- ======== ORDER SECTION ======== -->
     <section class="section-off py-20 min-h-[70vh]">
@@ -211,92 +117,7 @@
     </section>
 
     <!-- ======== FOOTER ======== -->
-    <footer class="py-14 bg-brand-navy text-white mt-auto">
-      <div class="max-w-7xl mx-auto px-5">
-        <div
-          class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-brand-blue"
-        >
-          <!-- Brand col -->
-          <div>
-            <a href="index.html" class="flex items-center gap-2 mb-4">
-              <div
-                class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-accent to-brand-blue flex items-center justify-center"
-              >
-                <svg
-                  class="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2.5"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <span class="font-display font-bold text-white text-lg"
-                >Repayment</span
-              >
-            </a>
-            <p class="text-sm text-blue-200 leading-relaxed mb-5">
-              Empowering victims of online fraud with the tools and expert
-              guidance to reclaim what is rightfully theirs.
-            </p>
-          </div>
-
-          <!-- Sitelinks -->
-          <div>
-            <p class="text-brand-goldlt font-semibold mb-4 text-sm uppercase tracking-widest">Sitelinks</p>
-            <ul class="space-y-2 text-sm text-blue-200">
-              <li><a href="index.html#testimonials" class="hover:text-white transition">Testimonials</a></li>
-              <li><a href="index.html#contact" class="hover:text-white transition">Contact Us</a></li>
-              <li><a href="About.html" class="hover:text-white transition">About Us</a></li>
-              <li><a href="index.html#faq" class="hover:text-white transition">FAQ</a></li>
-            </ul>
-          </div>
-
-          <!-- Services -->
-          <div>
-            <p class="text-brand-goldlt font-semibold mb-4 text-sm uppercase tracking-widest">Services</p>
-            <ul class="space-y-2 text-sm text-blue-200">
-              <li><a href="#" class="hover:text-white transition">Cyber Investigation</a></li>
-              <li><a href="#" class="hover:text-white transition">Crypto Asset Tracing</a></li>
-              <li><a href="#" class="hover:text-white transition">Binary Options</a></li>
-            </ul>
-          </div>
-
-          <!-- Contact -->
-          <div>
-            <p class="text-brand-goldlt font-semibold mb-4 text-sm uppercase tracking-widest">Contact</p>
-            <ul class="space-y-2 text-sm text-blue-200">
-              <li class="flex items-center gap-2">
-                <a href="#" class="hover:text-white transition">+972-539-538-554 (WhatsApp)</a>
-              </li>
-              <li class="flex items-center gap-2">
-                <a href="#" class="hover:text-white transition">+1-347-518-4140</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Bottom footer -->
-        <div class="pt-8">
-          <div
-            class="text-xs text-blue-300/60 leading-relaxed space-y-2"
-          >
-            <p>
-              Repayment Ltd., Israeli company No. 515711653, is authorized and
-              regulated in Israel & operates globally.
-            </p>
-            <p class="mt-4">
-              © 2024 Repayment. All rights reserved. DMCA Protected.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
     <!-- ======== SUCCESS MODAL ======== -->
     <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-5 hidden">
@@ -344,36 +165,10 @@
 
     <!-- ======== SCRIPTS ======== -->
     <script src="auth.js"></script>
+    <script src="components.js"></script>
     <script src="main.js"></script>
     <script>
-      // Auth State UI logic
       document.addEventListener('DOMContentLoaded', () => {
-        const desktopAuth = document.getElementById('desktop-auth');
-        const mobileAuth = document.getElementById('mobile-auth');
-        
-        const updateUI = () => {
-          if (!window.auth) return;
-          const authenticated = window.auth.isAuthenticated();
-          
-          if (authenticated) {
-            const logoutBtn = `<button onclick="window.auth.logoutUser()" class="nav-link font-semibold text-red-500 hover:text-red-600 transition">Logout</button>`;
-            if (desktopAuth) desktopAuth.innerHTML = logoutBtn;
-            if (mobileAuth) mobileAuth.innerHTML = `<button onclick="window.auth.logoutUser()" class="block w-full text-left nav-link py-2 text-red-500 font-semibold">Logout</button>`;
-          } else {
-            const loginLinks = `
-              <a href="login.html" class="nav-link font-semibold text-brand-navy">Login</a>
-              <a href="register.html" class="btn-outline px-4 py-2 text-sm rounded-lg font-semibold border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition">Sign Up</a>
-            `;
-            if (desktopAuth) desktopAuth.innerHTML = loginLinks;
-            if (mobileAuth) mobileAuth.innerHTML = `
-              <a href="login.html" class="block nav-link py-2 font-semibold">Login</a>
-              <a href="register.html" class="block nav-link py-2 font-semibold">Sign Up</a>
-            `;
-          }
-        };
-
-        updateUI();
-
         // Specific Order Page Logic
         const orderForm = document.getElementById('order-form');
         const submitBtn = document.getElementById('submit-btn');
